@@ -1,0 +1,26 @@
+?start: requirements_list
+      | requirement
+
+?requirements_list : "[" [requirement ("," requirement)*] "]"
+
+?requirement: safety_requirement | target_requirement | comfort_requirement
+
+?safety_requirement: "ensure" expr -> ensure
+?target_requirement: "achieve" expr -> achieve
+                   | "conquer" expr -> conquer
+?comfort_requirement: "encourage" expr -> encourage
+
+?expr: var "==" const    -> eq
+     | var "!=" const    -> ne
+     | var ">" const    -> gt
+     | var ">=" const   -> ge
+     | var "<" const    -> lt
+     | var "<=" const   -> le
+
+?var: ESCAPED_STRING
+?const: NUMBER -> number
+
+%import common.ESCAPED_STRING
+%import common.WS_INLINE
+%import common.NUMBER
+%ignore WS_INLINE
