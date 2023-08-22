@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from reward_shaping.test.test import generic_env_test, generic_training, generic_env_test_wt_agent
+from tests.test import generic_env_test, generic_training
 
-env_name = "racecar"
-tasks = ["drive_delta", "drive"]
+env_name = "racecar2"
+tasks = ["follow_delta"]
 
 
 class TestEnv(TestCase):
